@@ -1,0 +1,87 @@
+version: '2'
+services:
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    volumes:
+    - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+
+  wordpress:
+    depends_on:
+    - db
+    image: lightningpress
+    container_name: lightningpress
+    build:
+      context: lightningpress/
+    ports:
+    - 8080:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+
+  btc:
+    image: btcd
+    build:
+      context: btcd/
+    volumes:
+      - shared:/rpc
+      - bitcoin:/data
+    environment:
+      - RPCUSER
+      - RPCPASS
+      - NETWORK=testnet
+
+  btcd:
+    extends: btc
+    container_name: btcd
+    environment:
+      - DEBUG
+      - MINING_ADDRESS
+    entrypoint: ["./start-btcd.sh"]
+
+  lnd:
+    image: lnd
+    container_name: lnd
+    build:
+      context: lnd/
+    ports:
+      - 9735:9735
+    restart: always
+    environment:
+      - RPCUSER
+      - RPCPASS
+      - NETWORK=testnet
+      - CHAIN
+      - DEBUG
+    volumes:
+      - shared:/rpc
+      - lnd:/root/.lnd/
+    links:
+      - "btcd:blockchain"
+
+  lncli-web:
+    image: tyzbit/lncli-web
+    container_name: lncli-web
+    ports:
+      - 8280:8280
+    restart: always
+    environment:
+      - SET_LNDHOST=lnd:10009
+      - SET_SERVERHOST=0.0.0.0
+    volumes:
+      - lnd:/config
+
+volumes:
+  db_data:
+  bitcoin:
+  shared:
+  lnd:
