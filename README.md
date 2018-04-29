@@ -31,3 +31,7 @@ and paste it into Macaroon Hex
 11. Run `docker cp tls.cert lightningpress:/var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls/tls.cert`
 
 12. Run `docker exec -it lightningpress chown www-data:www-data /var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls -R`
+
+13. (Optional) Go to Settings -> Reading and set your homepage to the shop.
+
+The next step would be to use Apache or Nginx to reverse proxy to your WordPress site.
