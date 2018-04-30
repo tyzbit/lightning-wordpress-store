@@ -3,10 +3,7 @@ Quickly spin up a Lightning-enabled Wordpress Store
 
 # Quickstart:
 
-Run this and wait for the containers to come up.
-```
-docker-compose up -d
-```
+Run this and wait for the containers to come up: `docker-compose up -d`
 
 1. Once started, go to http://127.0.0.1:8080, and run through the WordPress setup.
 
@@ -14,7 +11,7 @@ docker-compose up -d
 
 3. Enable WooCommerce and then run through the setup there.
 
-   *I suggest denominating in local currency, and not enabling Stripe or PayPal.*
+   *I suggest denominating in local currency or BTC, and not enabling Stripe or PayPal.*
 
 4. Create a new product, and set a price for it.
 
@@ -43,4 +40,5 @@ and forwarding port 9735 to the internet so people can open channels.
 
 Syncing testnet will probably take some hours.
 
-Navigate to http://127.0.0.1:8280 to use lncli-web.
+Navigate to http://127.0.0.1:8280 to use lncli-web, from which you can get the node information.
+It will probably be inaccurate, as the URI will have 127.0.0.1 as the IP.
