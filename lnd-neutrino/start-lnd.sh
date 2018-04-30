@@ -44,6 +44,7 @@ RPCPASS=$(set_default "$RPCPASS" "devpass")
 DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
+NEUTRINO=$(set_default "$NEUTRINO" "faucet.lightning.community")
 BACKEND="neutrino"
 if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
@@ -55,7 +56,7 @@ exec lnd \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="neutrino" \
-    "--$BACKEND.connect"="faucet.lightning.community" \
+    "--$BACKEND.connect"="$NEUTRINO" \
     "--restlisten=0.0.0.0:8080" \
     "--rpclisten=0.0.0.0:10009" \
     --debuglevel="$DEBUG" \
