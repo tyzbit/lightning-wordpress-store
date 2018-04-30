@@ -41,3 +41,5 @@ rm tls.cert
 The next step would be to use Apache or Nginx to reverse proxy to your WordPress site.
 
 Syncing testnet will probably take some hours.
+
+Navigate to http://127.0.0.1:8280 to use lncli-web.
