@@ -3,7 +3,10 @@ Quickly spin up a Lightning-enabled Wordpress Store
 
 # Quickstart:
 
-`docker-compose up -d`, then wait for the images to build and start.
+Run this and wait for the containers to come up.
+```
+docker-compose up -d
+```
 
 1. Once started, go to http://127.0.0.1:8080, and run through the WordPress setup.
 
@@ -24,14 +27,17 @@ Quickly spin up a Lightning-enabled Wordpress Store
 8. Take the output of `docker exec -it lnd xxd -p -c 1000 /root/.lnd/invoice.macaroon`
 and paste it into Macaroon Hex
 
-9. Run `docker cp lnd:/root/.lnd/tls.cert tls.cert`
+9. Run these commands:
+```
+docker cp lnd:/root/.lnd/tls.cert tls.cert
+docker exec -it lightningpress mkdir /var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls
+docker cp tls.cert lightningpress:/var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls/tls.cert
+docker exec -it lightningpress chown www-data:www-data /var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls -R
+rm tls.cert
+```
 
-10. Run `docker exec -it lightningpress mkdir /var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls`
-
-11. Run `docker cp tls.cert lightningpress:/var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls/tls.cert`
-
-12. Run `docker exec -it lightningpress chown www-data:www-data /var/www/html/wp-content/plugins/woocommerce-gateway-lightning/tls -R`
-
-13. (Optional) Go to Settings -> Reading and set your homepage to the shop.
+10. (Optional) Go to Settings -> Reading and set your homepage to the shop.
 
 The next step would be to use Apache or Nginx to reverse proxy to your WordPress site.
+
+Syncing testnet will probably take some hours.

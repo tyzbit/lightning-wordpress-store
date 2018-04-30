@@ -52,6 +52,7 @@ fi
 exec lnd \
     --noencryptwallet \
     --tlsextraip="0.0.0.0" \
+    --tlsextradomain="lnd" \
     --logdir="/data" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \

@@ -10,8 +10,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_USER: lightningpress
+      MYSQL_PASSWORD: lightningpress
 
   wordpress:
     depends_on:
@@ -25,8 +25,8 @@ services:
     restart: always
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_USER: lightningpress
+      WORDPRESS_DB_PASSWORD: lightningpress
 
   btc:
     image: btcd
