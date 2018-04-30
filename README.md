@@ -1,5 +1,7 @@
 # lightning-wordpress-store
 Quickly spin up a Lightning-enabled Wordpress Store
+(Testnet only, for testing and learning purposes only)
+
 
 # Quickstart:
 
@@ -42,3 +44,10 @@ Syncing testnet will probably take some hours.
 
 Navigate to http://127.0.0.1:8280 to use lncli-web, from which you can get the node information.
 It will probably be inaccurate, as the URI will have 127.0.0.1 as the IP.
+
+
+# Neutrino
+
+Run this and wait for the containers to come up: `docker-compose -f neutrino-docker-compose.yml up -d`
+
+Then run through the previous steps.
