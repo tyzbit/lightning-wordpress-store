@@ -44,7 +44,7 @@ RPCPASS=$(set_default "$RPCPASS" "devpass")
 DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
-NEUTRINO=$(set_default "$NEUTRINO" "faucet.lightning.community")
+NEUTRINO=$(set_default "$NEUTRINO" "faucet.lightning.community:18333")
 BACKEND="neutrino"
 if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
