@@ -25,7 +25,7 @@ docker-compose up -d
 7. Change the endpoint to https://lnd:8080
 
 8. Take the output of `docker exec -it lnd xxd -p -c 1000 /root/.lnd/invoice.macaroon`
-and paste it into Macaroon Hex
+and paste it into Macaroon Hex, then click Save
 
 9. Run these commands:
 ```
