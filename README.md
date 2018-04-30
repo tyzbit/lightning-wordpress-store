@@ -38,7 +38,8 @@ rm tls.cert
 
 10. (Optional) Go to Settings -> Reading and set your homepage to the shop.
 
-The next step would be to use Apache or Nginx to reverse proxy to your WordPress site.
+The next step would be to use Apache or Nginx to reverse proxy to your WordPress site,
+and forwarding port 9735 to the internet so people can open channels.
 
 Syncing testnet will probably take some hours.
 
